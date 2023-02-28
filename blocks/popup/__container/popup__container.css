@@ -1,0 +1,14 @@
+.popup__container{
+    max-width: 470px;
+    width: 100%;
+    max-height: 370px;
+    height: 100%;
+    margin: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__container {
+        max-width: 320px;
+        max-height: 358px;
+    }
+}

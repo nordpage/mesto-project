@@ -1,0 +1,18 @@
+.popup__status {
+    width: 100%;
+    max-width: 358px;
+    height: 27px;
+    margin: 30px 36px 0;
+    padding: 0;
+    outline:0;
+    border: 0;
+    border-bottom: 1px solid black;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__status {
+        max-width: 238px;
+    }
+}

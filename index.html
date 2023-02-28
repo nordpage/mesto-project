@@ -5,11 +5,83 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Mesto</title>
     <link href="pages/index.css" rel="stylesheet">
-    <meta name="Анастасия Хоревич" content="Yandex Practicum Studying">
+    <meta content="Yandex Practicum Studying" name="Анастасия Хоревич">
 </head>
 <body class="page">
-    <header class="header">
-        <img class="header__logo" src="images/logo.svg">
-    </header>
+<section class="popup">
+    <div class="popup__container">
+        <div class="popup__button-close"></div>
+        <div class="popup__window">
+            <p class="popup__title">Редактировать профиль</p>
+            <input class="popup__name" type="text" placeholder="Имя" value="Жак-Ив Кусто">
+            <input class="popup__status" type="text" placeholder="Статус" value="Исследователь океана">
+            <div class="popup__button-save">Сохранить</div>
+        </div>
+    </div>
+</section>
+<header class="header">
+    <img alt="логотип" class="header__logo" src="images/logo.svg">
+</header>
+<main>
+    <section class="profile">
+        <img alt="Жак Ив Кусто" class="profile__avatar" src="images/cousteau.jpg"/>
+        <div class="profile__info">
+            <div class="profile__name-container">
+                <p class="profile__name">Жак-Ив Кусто</p>
+                <div class="profile__button-edit">
+                </div>
+            </div>
+            <p class="profile__status">Исследователь океана</p>
+        </div>
+        <div class="profile__button-add"></div>
+    </section>
+    <section class="elements">
+        <div class="element">
+            <img alt="Карачаевск" class="element__image" src="images/image1.png">
+            <div class="element__title_container">
+                <p class="element__title">Карачаевск</p>
+                <img alt="Кнопка Like" class="element__button-like" src="images/like.png">
+            </div>
+        </div>
+        <div class="element">
+            <img alt="Эльбрус" class="element__image" src="images/image2.png">
+            <div class="element__title_container">
+                <p class="element__title">Гора Эльбрус</p>
+                <img alt="Кнопка Like" class="element__button-like" src="images/like.png">
+            </div>
+        </div>
+        <div class="element">
+            <img alt="Домбай" class="element__image" src="images/image3.png">
+            <div class="element__title_container">
+                <p class="element__title">Домбай</p>
+                <img alt="Кнопка Like" class="element__button-like" src="images/like.png">
+            </div>
+        </div>
+        <div class="element">
+            <img alt="Эльбрус" class="element__image" src="images/image2.png">
+            <div class="element__title_container">
+                <p class="element__title">Гора Эльбрус</p>
+                <img alt="Кнопка Like" class="element__button-like" src="images/like.png">
+            </div>
+        </div>
+        <div class="element">
+            <img alt="Домбай" class="element__image" src="images/image3.png">
+            <div class="element__title_container">
+                <p class="element__title">Домбай</p>
+                <img alt="Кнопка Like" class="element__button-like" src="images/like.png">
+            </div>
+        </div>
+        <div class="element">
+            <img alt="Карачаево-Ч" class="element__image" src="images/image1.png">
+            <div class="element__title_container">
+                <p class="element__title">Карачаево-Ч...</p>
+                <img alt="Кнопка Like" class="element__button-like" src="images/like.png">
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    © 2020 Mesto Russia
+</footer>
 </body>
 </html>

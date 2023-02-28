@@ -1,0 +1,9 @@
+.element__title_container {
+    width: 246px;
+    height: 79px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -3,5 +3,12 @@
     font-family: 'Inter', 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 7px;
+}
+
+@media screen and (max-width: 999px) {
+    .profile__info {
+        gap: 14px;
+        margin-bottom: 36px;
+    }
 }

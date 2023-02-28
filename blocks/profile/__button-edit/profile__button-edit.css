@@ -1,7 +1,8 @@
 .profile__button-edit {
     width: 24px;
     height: 24px;
-    background: url("../../../images/pencil.png") no-repeat center;
+    background: url("../../../images/pencil.svg") no-repeat center;
+    background-size: 10px;
     border: 1px solid white;
     align-self: center;
     display: flex;
@@ -18,5 +19,6 @@
     .profile__button-edit{
         width: 18px;
         height: 18px;
+        background-size: 7.5px;
     }
 }

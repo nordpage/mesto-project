@@ -4,12 +4,11 @@
     background-color: white;
     border-radius: 10px;
     max-width: 430px;
-    height: 330px;
 }
 
 @media screen and (max-width: 767px) {
     .popup__window {
         max-width: 282px;
-        height: 322px;
+        margin-top: 8px;
     }
 }

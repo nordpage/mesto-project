@@ -1,14 +1,13 @@
 .popup__button-close {
-    position: relative;
-    bottom: 8px;
-    left: 40px;
+    position: absolute;
+    top: -40px;
+    right: -40px;
     width: 32px;
     height: 32px;
     background: url("../../../images/close.svg") no-repeat center;
     background-size: 32px;
     border-radius: 2px;
     border: none;
-    margin-left: auto;
     align-self: self-start;
 }
 
@@ -19,8 +18,10 @@
 
 @media screen and (max-width: 767px) {
     .popup__button-close {
-        left: 0;
+        right: 0;
+        top: -36px;
         width: 20px;
         height: 20px;
+        background-size: 20px;
     }
 }

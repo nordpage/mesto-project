@@ -1,4 +1,11 @@
 .popup_opened {
     display: flex;
-    align-items: start;
+    flex-direction: column;
+    padding-top: 195px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup_opened {
+        padding-top: 123px;
+    }
 }

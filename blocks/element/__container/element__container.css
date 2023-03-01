@@ -1,4 +1,5 @@
-.element__title_container {
+.element__container {
+    position: relative;
     width: 246px;
     height: auto;
     margin: 20px auto;

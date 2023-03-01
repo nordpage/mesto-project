@@ -4,12 +4,11 @@
     justify-content: space-between;
     align-items: start;
     width: 430px;
-    margin: 155px auto 0;
+    position: relative;
 }
 
 @media screen and (max-width: 767px) {
     .popup__container {
         width: 282px;
-        margin: 87px auto 0;
     }
 }

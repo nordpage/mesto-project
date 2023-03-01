@@ -3,10 +3,12 @@
     flex-direction: row;
     gap: 18px;
     justify-self: end;
+    justify-content: center;
 }
 
 @media screen and (max-width: 767px) {
     .profile__name-container {
         gap: 10px;
+        max-width: 282px;
     }
 }

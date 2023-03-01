@@ -1,0 +1,9 @@
+.popup__input_status_text{
+
+}
+
+@media screen and (max-width: 767px) {
+    .popup__input_status_text {
+
+    }
+}

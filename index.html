@@ -10,13 +10,15 @@
 <body class="page">
 <div class="popup">
     <div class="popup__container">
-        <button type="button" class="popup__button-close"></button>
+        <button class="popup__button-close" type="button"></button>
         <div class="popup__window">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form method="post" name="edit" class="popup__form">
-                <input class="popup__input popup__input_name_text" type="text" placeholder="Имя" name="name" value="Жак-Ив Кусто">
-                <input class="popup__input popup__input_status_text" type="text" placeholder="Статус" name="status" value="Исследователь океана">
-                <button type="submit" class="popup__button-save">Сохранить</button>
+            <form class="popup__form" method="post" name="edit">
+                <input class="popup__input popup__input_text_name" name="name" placeholder="Имя" type="text"
+                       value="Жак-Ив Кусто">
+                <input class="popup__input popup__input_text_status" name="status" placeholder="Статус" type="text"
+                       value="Исследователь океана">
+                <button class="popup__button-save" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
@@ -30,54 +32,55 @@
         <div class="profile__info">
             <div class="profile__name-container">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__button-edit">
+                <button class="profile__button-edit" type="button">
                 </button>
             </div>
             <p class="profile__status">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__button-add"></button>
+        <button class="profile__button-add" type="button"></button>
     </section>
     <section class="elements">
         <article class="element">
             <img alt="Карачаевск" class="element__image" src="images/image1.png">
             <div class="element__container">
-                <h2 class="element__title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, provident.</h2>
-                <button type="button" class="element__button-like"></button>
+                <h2 class="element__title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure,
+                    provident.</h2>
+                <button class="element__button-like" type="button"></button>
             </div>
         </article>
         <article class="element">
             <img alt="Эльбрус" class="element__image" src="images/image2.png">
             <div class="element__container">
                 <h2 class="element__title">Гора Эльбрус</h2>
-                <button type="button" class="element__button-like"></button>
+                <button class="element__button-like" type="button"></button>
             </div>
         </article>
         <article class="element">
             <img alt="Домбай" class="element__image" src="images/image3.png">
             <div class="element__container">
                 <h2 class="element__title">Домбай</h2>
-                <button type="button" class="element__button-like"></button>
+                <button class="element__button-like" type="button"></button>
             </div>
         </article>
         <article class="element">
             <img alt="Эльбрус" class="element__image" src="images/image2.png">
             <div class="element__container">
                 <h2 class="element__title">Гора Эльбрус</h2>
-                <button type="button" class="element__button-like"></button>
+                <button class="element__button-like" type="button"></button>
             </div>
         </article>
         <article class="element">
             <img alt="Домбай" class="element__image" src="images/image3.png">
             <div class="element__container">
                 <h2 class="element__title">Домбай</h2>
-                <button type="button" class="element__button-like"></button>
+                <button class="element__button-like" type="button"></button>
             </div>
         </article>
         <article class="element">
             <img alt="Карачаево-Черкесия" class="element__image" src="images/image1.png">
             <div class="element__container">
                 <h2 class="element__title">Карачаево-Черкесия</h2>
-                <button type="button" class="element__button-like"></button>
+                <button class="element__button-like" type="button"></button>
             </div>
         </article>
     </section>

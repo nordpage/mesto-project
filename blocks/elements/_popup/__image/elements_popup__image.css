@@ -1,0 +1,6 @@
+.elements_popup__image {
+    max-height: 540px;
+    width: 816px;
+    height: 100%;
+    object-fit: cover;
+}

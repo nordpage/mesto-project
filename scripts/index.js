@@ -65,8 +65,8 @@ const previewContainer = document.querySelector('.popup__container_preview');
 
 function handleFormEditSubmit(evt) {
     evt.preventDefault();
-    profile__name.textContent = nameInput.value;
-    profile__status.textContent = statusInput.value;
+    profileName.textContent = nameInput.value;
+    profileStatus.textContent = statusInput.value;
     closePopup(popupEdit);
 }
 

@@ -3,3 +3,9 @@
     max-height: 540px;
     height: 100%;
 }
+
+@media screen and (max-width: 767px) {
+    .popup__image_orientation_album {
+        max-height: 270px;
+    }
+}

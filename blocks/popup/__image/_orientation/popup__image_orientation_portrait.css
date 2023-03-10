@@ -4,3 +4,10 @@
     max-height: 540px;
     height: 100%;
 }
+
+@media screen and (max-width: 767px) {
+    .popup__image_orientation_portrait {
+        max-width: 216px;
+        max-height: 270px;
+    }
+}

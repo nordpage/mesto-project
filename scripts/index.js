@@ -41,27 +41,29 @@ const initialCards = [
     }
 ];
 
-const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonAdd = document.querySelector('.profile__button-add');
-const formElementEdit = document.querySelector('.popup__form_edit');
-const formElementAdd = document.querySelector('.popup__form_add');
-const nameInput = document.querySelector('.popup__input_text_name');
-const statusInput = document.querySelector('.popup__input_text_status');
-const titleInput = document.querySelector('.popup__input_text_title');
-const linkInput = document.querySelector('.popup__input_text_link');
-const profileName = document.querySelector('.profile__name');
-const profileStatus = document.querySelector('.profile__status');
-const popupEdit = document.querySelector('.popup_edit');
-const buttonEditClose = popupEdit.querySelector('.popup__button-close');
-const popupAdd = document.querySelector('.popup_add');
-const popupPreview = document.querySelector('.popup_preview');
-const buttonAddClose = popupAdd.querySelector('.popup__button-close');
+const buttonEdit = document.querySelector('.profile__button-edit');
 const cardTemplate = document.querySelector('#element').content;
 const cards = document.querySelector('.elements');
-const buttonPreviewClose = popupPreview.querySelector('.popup__button-close');
-const popupPreviewTitle = document.querySelector('.popup__title_preview');
+const formElementAdd = document.querySelector('.popup__form_add');
+const formElementEdit = document.querySelector('.popup__form_edit');
+const linkInput = document.querySelector('.popup__input_text_link');
+const nameInput = document.querySelector('.popup__input_text_name');
+const popupAdd = document.querySelector('.popup_add');
+const popupEdit = document.querySelector('.popup_edit');
 const popupImage = document.querySelector('.popup__image');
+const popupPreview = document.querySelector('.popup_preview');
+const popupPreviewTitle = document.querySelector('.popup__title_preview');
 const previewContainer = document.querySelector('.popup__container_preview');
+const profileName = document.querySelector('.profile__name');
+const profileStatus = document.querySelector('.profile__status');
+const statusInput = document.querySelector('.popup__input_text_status');
+const titleInput = document.querySelector('.popup__input_text_title');
+
+
+const buttonAddClose = popupAdd.querySelector('.popup__button-close');
+const buttonEditClose = popupEdit.querySelector('.popup__button-close');
+const buttonPreviewClose = popupPreview.querySelector('.popup__button-close');
 
 function handleFormEditSubmit(evt) {
     evt.preventDefault();

@@ -1,3 +1,9 @@
 .popup_preview {
     min-width: 816px;
 }
+
+@media screen and (max-width: 767px) {
+    .popup_preview {
+        min-width: 320px;
+    }
+}

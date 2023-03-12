@@ -59,11 +59,9 @@ const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__status');
 const statusInput = document.querySelector('.popup__input_text_status');
 const titleInput = document.querySelector('.popup__input_text_title');
-
-
-const buttonAddClose = popupAdd.querySelector('.popup__button-close');
-const buttonEditClose = popupEdit.querySelector('.popup__button-close');
-const buttonPreviewClose = popupPreview.querySelector('.popup__button-close');
+const closeButtons = document.querySelectorAll('.popup__button-close');
+const previewImageClasses = ['popup__image_orientation_album', 'popup__image_orientation_portrait'];
+const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];
 
 function handleFormEditSubmit(evt) {
     evt.preventDefault();
@@ -75,7 +73,6 @@ function handleFormEditSubmit(evt) {
 function handleFormAddSubmit(evt) {
     evt.preventDefault();
     const card = {name: titleInput.value, link: linkInput.value}
-    initialCards.push(card);
     createCard(card);
     formElementAdd.reset();
     closePopup(popupAdd);
@@ -110,26 +107,23 @@ function createCard(card) {
     cardImage.src = card.link;
     cardImage.alt = 'Картинка, изображающая ' + card.name;
     cardTitle.textContent = card.name;
-    cards.append(cardElement);
+    cards.prepend(cardElement);
     cardLike.addEventListener('click', (evt) => evt.target.classList.toggle('element__button-like-active'));
     cardTrash.addEventListener('click', (evt) => evt.target.closest('.element').remove());
     cardImage.addEventListener('click', () => {
-        let orientation, containerOrientation;
         getMeta(card.link, (err, img) => {
-            orientation = img.naturalWidth > img.naturalHeight ? "popup__image_orientation_album" : "popup__image_orientation_portrait";
-            containerOrientation = img.naturalWidth > img.naturalHeight ? "popup__container_preview_album" : "popup__container_preview_portrait";
-            popupImage.classList.add(orientation);
-            previewContainer.classList.add(containerOrientation);
+            const index = img.naturalWidth > img.naturalHeight ? 0 : 1;
+
+            // popupImage.classList.add(previewImageClasses[index]);
+            // previewContainer.classList.add(previewContainerClasses[index]);
+
+            addPreviewClasses(index);
+
         });
         openPopup(popupPreview);
         popupImage.src = card.link;
+        popupImage.alt = `Изображение ${card.name} в превью элемента`
         popupPreviewTitle.textContent = card.name;
-
-        buttonPreviewClose.addEventListener('click', () => {
-            popupImage.classList.remove(orientation);
-            previewContainer.classList.remove(containerOrientation);
-            closePopup(popupPreview);
-        });
     });
 }
 
@@ -140,15 +134,39 @@ const getMeta = (url, cb) => {
     img.src = url;
 };
 
+function addPreviewClasses(index) {
+    const popupImageArray = Array.from(popupImage.classList);
+    const popupImageMatches = popupImageArray.filter(value => previewImageClasses.includes(value));
+   if (popupImageMatches !== null) {
+      popupImage.classList.remove(...popupImageMatches);
+      popupImage.classList.add(previewImageClasses[index]);
+   } else {
+       popupImage.classList.add(previewImageClasses[index]);
+   }
+
+    const popupImageContainerArray = Array.from(previewContainer.classList);
+    const popupImageContainerMatches = popupImageContainerArray.filter(value => previewContainerClasses.includes(value));
+    if (popupImageContainerMatches !== null) {
+        previewContainer.classList.remove(...popupImageContainerMatches);
+        previewContainer.classList.add(previewContainerClasses[index]);
+    } else {
+        previewContainer.classList.add(previewContainerClasses[index]);
+    }
+
+
+}
+
 formElementEdit.addEventListener('submit', handleFormEditSubmit);
 formElementAdd.addEventListener('submit', handleFormAddSubmit);
 buttonAdd.addEventListener('click', () => openPopup(popupAdd));
-buttonEditClose.addEventListener('click', () => closePopup(popupEdit));
-buttonAddClose.addEventListener('click', () => closePopup(popupAdd));
-buttonPreviewClose.addEventListener('click', () => closePopup(popupPreview));
 buttonEdit.addEventListener('click', () => {
     openPopup(popupEdit);
     loadEditValues();
 });
+closeButtons.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
+});
+
 
 loadCards();

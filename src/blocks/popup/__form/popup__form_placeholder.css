@@ -1,0 +1,10 @@
+.popup__form_placeholder {
+    font-size: 16px;
+    line-height: 19px;
+    color: #979797;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transition: 0.3s;
+    pointer-events: none;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Mesto</title>
+    <meta content="Yandex Practicum Studying" name="Анастасия Хоревич">
+</head>
+<body class="page">
+<div class="popup popup_edit">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <div class="popup__window">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form popup__form_edit" novalidate>
+                <label class="popup__form_field">
+                    <input aria-label="Имя" class="popup__input popup__input_text_name" id="name-input" maxlength="40"
+                           minlength="2" name="name"
+                           placeholder="Имя" required type="text" value="Жак-Ив Кусто" pattern="^[a-zA-Zа-яА-Я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+                    <span class="popup__input_error name-input-error"></span>
+                </label>
+                <label class="popup__form_field">
+                    <input aria-label="Статус" class="popup__input popup__input_text_status" id="status-input"
+                           maxlength="200" minlength="2" name="status"
+                           placeholder="Статус" required type="text" value="Исследователь океана" pattern="^[a-zA-Zа-яА-Я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+                    <span class="popup__input_error status-input-error"></span>
+                </label>
+                <button class="popup__button-save" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="popup popup_add">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <div class="popup__window">
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form popup__form_add" novalidate>
+                <label class="popup__form_field">
+                    <input class="popup__input" id="title-input" maxlength="25" minlength="4" name="title"
+                           pattern="^[a-zA-Zа-яА-Я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" placeholder="Название места" required type="text">
+                    <span class="popup__input_error title-input-error"></span>
+                </label>
+                <label class="popup__form_field">
+                    <input class="popup__input" id="link-input" name="link" placeholder="Ссылка на изображение" required
+                           type="url">
+                    <span class="popup__input_error link-input-error"></span>
+                </label>
+                <button class="popup__button-save" type="submit">Добавить</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="popup popup_preview">
+    <div class="popup__overlay"></div>
+    <div class="popup__container popup__container_preview">
+        <button class="popup__button-close" type="button"></button>
+        <img alt="Изображение в превью элемента" class="popup__image" src="">
+        <p class="popup__title_preview"></p>
+    </div>
+</div>
+<header class="header">
+    <img alt="логотип" class="header__logo" src="<%=require('./images/logo.svg')%>">
+</header>
+<main>
+    <section class="profile">
+        <img alt="Изображение профиля пользователя" class="profile__avatar"
+             src="<%=require('./images/cousteau.jpg')%>"/>
+        <div class="profile__info">
+            <div class="profile__name-container">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button class="profile__button-edit" type="button">
+                </button>
+            </div>
+            <p class="profile__status">Исследователь океана</p>
+        </div>
+        <button class="profile__button-add" type="button"></button>
+    </section>
+    <section class="elements">
+    </section>
+</main>
+<footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+</footer>
+<template id="element">
+    <article class="element">
+        <div class="element__trash"></div>
+        <img alt="" class="element__image" src="">
+        <div class="element__container">
+            <h2 class="element__title"></h2>
+            <button class="element__button-like" type="button"></button>
+        </div>
+    </article>
+</template>
+</body>
+</html>

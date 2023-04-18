@@ -1,3 +1,5 @@
+import {openPopup} from "./modal";
+
 const initialCards = [
     {
         name: 'Клайпеда',
@@ -41,64 +43,23 @@ const initialCards = [
     }
 ];
 
-const buttonAdd = document.querySelector('.profile__button-add');
-const buttonEdit = document.querySelector('.profile__button-edit');
 const cardTemplate = document.querySelector('#element').content;
 const cards = document.querySelector('.elements');
-const formElementAdd = document.querySelector('.popup__form_add');
-const formElementEdit = document.querySelector('.popup__form_edit');
-const linkInput = document.querySelector('.popup__input_text_link');
-const nameInput = document.querySelector('.popup__input_text_name');
-const popupAdd = document.querySelector('.popup_add');
-const popupEdit = document.querySelector('.popup_edit');
 const popupImage = document.querySelector('.popup__image');
 const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewTitle = document.querySelector('.popup__title_preview');
 const previewContainer = document.querySelector('.popup__container_preview');
-const profileName = document.querySelector('.profile__name');
-const profileStatus = document.querySelector('.profile__status');
-const statusInput = document.querySelector('.popup__input_text_status');
-const titleInput = document.querySelector('.popup__input_text_title');
-const closeButtons = document.querySelectorAll('.popup__button-close');
 const previewImageClasses = ['popup__image_orientation_album', 'popup__image_orientation_portrait'];
 const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];
 
-function handleFormEditSubmit(evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileStatus.textContent = statusInput.value;
-    closePopup(popupEdit);
-}
-
-function handleFormAddSubmit(evt) {
-    evt.preventDefault();
-    const card = {name: titleInput.value, link: linkInput.value}
-    createCard(card);
-    formElementAdd.reset();
-    closePopup(popupAdd);
-}
-
-function openPopup(element) {
-    element.classList.add('popup_opened');
-}
-
-function closePopup(element) {
-    element.classList.remove('popup_opened');
-}
-
-function loadEditValues() {
-    nameInput.value = profileName.textContent;
-    statusInput.value = profileStatus.textContent;
-}
-
-function loadCards() {
+export function loadCards() {
     while (cards.firstChild) cards.removeChild(cards.firstChild);
     initialCards.forEach(card => {
         createCard(card);
     });
 }
 
-function createCard(card) {
+export function createCard(card) {
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
     const cardTitle = cardElement.querySelector('.element__title');
@@ -114,9 +75,6 @@ function createCard(card) {
         getMeta(card.link, (err, img) => {
             const index = img.naturalWidth > img.naturalHeight ? 0 : 1;
 
-            // popupImage.classList.add(previewImageClasses[index]);
-            // previewContainer.classList.add(previewContainerClasses[index]);
-
             addPreviewClasses(index);
 
         });
@@ -126,6 +84,7 @@ function createCard(card) {
         popupPreviewTitle.textContent = card.name;
     });
 }
+
 
 const getMeta = (url, cb) => {
     const img = new Image();
@@ -137,12 +96,12 @@ const getMeta = (url, cb) => {
 function addPreviewClasses(index) {
     const popupImageArray = Array.from(popupImage.classList);
     const popupImageMatches = popupImageArray.filter(value => previewImageClasses.includes(value));
-   if (popupImageMatches !== null) {
-      popupImage.classList.remove(...popupImageMatches);
-      popupImage.classList.add(previewImageClasses[index]);
-   } else {
-       popupImage.classList.add(previewImageClasses[index]);
-   }
+    if (popupImageMatches !== null) {
+        popupImage.classList.remove(...popupImageMatches);
+        popupImage.classList.add(previewImageClasses[index]);
+    } else {
+        popupImage.classList.add(previewImageClasses[index]);
+    }
 
     const popupImageContainerArray = Array.from(previewContainer.classList);
     const popupImageContainerMatches = popupImageContainerArray.filter(value => previewContainerClasses.includes(value));
@@ -153,20 +112,4 @@ function addPreviewClasses(index) {
         previewContainer.classList.add(previewContainerClasses[index]);
     }
 
-
 }
-
-formElementEdit.addEventListener('submit', handleFormEditSubmit);
-formElementAdd.addEventListener('submit', handleFormAddSubmit);
-buttonAdd.addEventListener('click', () => openPopup(popupAdd));
-buttonEdit.addEventListener('click', () => {
-    openPopup(popupEdit);
-    loadEditValues();
-});
-closeButtons.forEach((button) => {
-    const popup = button.closest('.popup');
-    button.addEventListener('click', () => closePopup(popup));
-});
-
-
-loadCards();

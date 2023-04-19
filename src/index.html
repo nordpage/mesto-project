@@ -39,12 +39,12 @@
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form popup__form_add" novalidate>
                 <label class="popup__form_field">
-                    <input class="popup__input" id="title-input" maxlength="25" minlength="4" name="title"
+                    <input class="popup__input popup__input_text_title" id="title-input" maxlength="25" minlength="4" name="title"
                            pattern="^[a-zA-Zа-яА-Я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" placeholder="Название места" required type="text">
                     <span class="popup__input_error title-input-error"></span>
                 </label>
                 <label class="popup__form_field">
-                    <input class="popup__input" id="link-input" name="link" placeholder="Ссылка на изображение" required
+                    <input class="popup__input popup__input_text_link" id="link-input" name="link" placeholder="Ссылка на изображение" required
                            type="url">
                     <span class="popup__input_error link-input-error"></span>
                 </label>

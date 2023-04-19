@@ -1,4 +1,4 @@
-import {openPopup} from "./modal";
+import {closePopup, openPopup} from "./modal";
 
 const initialCards = [
     {
@@ -82,6 +82,11 @@ export function createCard(card) {
         popupImage.src = card.link;
         popupImage.alt = `Изображение ${card.name} в превью элемента`
         popupPreviewTitle.textContent = card.name;
+        document.addEventListener('keydown', function (evt) {
+            if (evt.keyCode === 27) {
+                closePopup(popupPreview);
+            }
+        })
     });
 }
 

@@ -47,20 +47,16 @@ const setEventListeners = (formElement) => {
             toggleButtonState(inputList, buttonElement);
         });
     });
-    document.addEventListener('keydown', function (evt) {
-        if (evt.keyCode === 27) {
-            closePopup(formElement.closest('.popup'))
-        }
-    })
 };
 
 const enableValidation = () => {
     const formList = Array.from(document.querySelectorAll('.popup__form'));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', function (evt) {
-            if (evt.target.contains('popup__form_edit')) {
+            evt.preventDefault()
+            if (evt.target.classList.contains('popup__form_edit')) {
                 handleFormEditSubmit(evt);
-            } else if (evt.target.contains('popup__form_add')) {
+            } else if (evt.target.classList.contains('popup__form_add')) {
                 handleFormAddSubmit(evt);
             }
         });
@@ -70,7 +66,6 @@ const enableValidation = () => {
 };
 
 function handleFormEditSubmit(evt) {
-    evt.preventDefault();
     const popupEdit = document.querySelector('.popup_edit');
     const profileName = document.querySelector('.profile__name');
     const profileStatus = document.querySelector('.profile__status');
@@ -82,7 +77,6 @@ function handleFormEditSubmit(evt) {
 }
 
 function handleFormAddSubmit(evt) {
-    evt.preventDefault();
     const popupAdd = document.querySelector('.popup_add');
     const titleInput = document.querySelector('.popup__input_text_title');
     const linkInput = document.querySelector('.popup__input_text_link');

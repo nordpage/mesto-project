@@ -44,7 +44,6 @@ const initialCards = [
 ];
 
 const cardTemplate = document.querySelector('#element').content;
-const cards = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup__image');
 const popupPreview = document.querySelector('.popup_preview');
 const popupPreviewTitle = document.querySelector('.popup__title_preview');
@@ -53,9 +52,11 @@ const previewImageClasses = ['popup__image_orientation_album', 'popup__image_ori
 const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];
 
 export function loadCards() {
+    const cards = document.querySelector('.elements');
     while (cards.firstChild) cards.removeChild(cards.firstChild);
     initialCards.forEach(card => {
-        createCard(card);
+      const cardElement = createCard(card);
+      cards.prepend(cardElement);
     });
 }
 
@@ -68,7 +69,6 @@ export function createCard(card) {
     cardImage.src = card.link;
     cardImage.alt = 'Картинка, изображающая ' + card.name;
     cardTitle.textContent = card.name;
-    cards.prepend(cardElement);
     cardLike.addEventListener('click', (evt) => evt.target.classList.toggle('element__button-like-active'));
     cardTrash.addEventListener('click', (evt) => evt.target.closest('.element').remove());
     cardImage.addEventListener('click', () => {
@@ -88,6 +88,7 @@ export function createCard(card) {
             }
         })
     });
+    return cardElement;
 }
 
 

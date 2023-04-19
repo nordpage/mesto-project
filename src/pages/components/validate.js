@@ -77,11 +77,13 @@ function handleFormEditSubmit(evt) {
 }
 
 function handleFormAddSubmit(evt) {
+    const cards = document.querySelector('.elements');
     const popupAdd = document.querySelector('.popup_add');
     const titleInput = document.querySelector('.popup__input_text_title');
     const linkInput = document.querySelector('.popup__input_text_link');
     const card = {name: titleInput.value, link: linkInput.value}
-    createCard(card);
+    const cardElement = createCard(card);
+    cards.prepend(cardElement);
     evt.target.reset();
     closePopup(popupAdd);
 }

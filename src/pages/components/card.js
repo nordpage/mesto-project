@@ -1,4 +1,14 @@
-import {closePopup, openPopup} from "./modal";
+import {openPopup} from "./modal";
+import {
+    cards,
+    cardTemplate,
+    popupImage,
+    popupPreview,
+    popupPreviewTitle,
+    previewContainer,
+    previewContainerClasses,
+    previewImageClasses
+} from "./utils";
 
 const initialCards = [
     {
@@ -43,20 +53,12 @@ const initialCards = [
     }
 ];
 
-const cardTemplate = document.querySelector('#element').content;
-const popupImage = document.querySelector('.popup__image');
-const popupPreview = document.querySelector('.popup_preview');
-const popupPreviewTitle = document.querySelector('.popup__title_preview');
-const previewContainer = document.querySelector('.popup__container_preview');
-const previewImageClasses = ['popup__image_orientation_album', 'popup__image_orientation_portrait'];
-const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];
 
 export function loadCards() {
-    const cards = document.querySelector('.elements');
     while (cards.firstChild) cards.removeChild(cards.firstChild);
     initialCards.forEach(card => {
-      const cardElement = createCard(card);
-      cards.prepend(cardElement);
+        const cardElement = createCard(card);
+        cards.prepend(cardElement);
     });
 }
 
@@ -82,11 +84,6 @@ export function createCard(card) {
         popupImage.src = card.link;
         popupImage.alt = `Изображение ${card.name} в превью элемента`
         popupPreviewTitle.textContent = card.name;
-        document.addEventListener('keydown', function (evt) {
-            if (evt.keyCode === 27) {
-                closePopup(popupPreview);
-            }
-        })
     });
     return cardElement;
 }

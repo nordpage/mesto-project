@@ -1,4 +1,20 @@
-
-export const inputValueCheck = (inputElement) => {
-  return inputElement.value !== null && inputElement.value !== "";
-}
+export const cards = document.querySelector('.elements');
+export const buttonAdd = document.querySelector('.profile__button-add');
+export const buttonEdit = document.querySelector('.profile__button-edit');
+export const closeButtons = document.querySelectorAll('.popup__button-close');
+export const overlays = document.querySelectorAll('.popup__overlay');
+export const profileName = document.querySelector('.profile__name');
+export const profileStatus = document.querySelector('.profile__status');
+export const nameInput = document.querySelector('.popup__input_text_name');
+export const statusInput = document.querySelector('.popup__input_text_status');
+export const popupAdd = document.querySelector('.popup_add');
+export const popupEdit = document.querySelector('.popup_edit');
+export const titleInput = document.querySelector('.popup__input_text_title');
+export const linkInput = document.querySelector('.popup__input_text_link');
+export const cardTemplate = document.querySelector('#element').content;
+export const popupImage = document.querySelector('.popup__image');
+export const popupPreview = document.querySelector('.popup_preview');
+export const popupPreviewTitle = document.querySelector('.popup__title_preview');
+export const previewContainer = document.querySelector('.popup__container_preview');
+export const previewImageClasses = ['popup__image_orientation_album', 'popup__image_orientation_portrait'];
+export const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];

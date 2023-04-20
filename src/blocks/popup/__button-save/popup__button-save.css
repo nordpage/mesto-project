@@ -15,6 +15,13 @@
     border-radius: 2px;
 }
 
+.popup__button-save:disabled, .popup__button-save[disabled] {
+    background-color: transparent;
+    color: rgba(0,0,0,0.2);
+    pointer-events: none;
+    border: black solid 1px;
+}
+
 .popup__button-save:hover {
     cursor: pointer;
     opacity: 0.8;

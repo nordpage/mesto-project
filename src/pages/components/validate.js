@@ -1,5 +1,3 @@
-import {handleFormAddSubmit, handleFormEditSubmit} from "./modal";
-
 let input;
 let buttonSelector;
 let inputTypeError;
@@ -52,9 +50,7 @@ export const enableValidation = ({
                                      inputSelector,
                                      submitButtonSelector,
                                      inputErrorClass,
-                                     errorClass,
-                                     popupAdd,
-                                     popupEdit
+                                     errorClass
                                  }) => {
     input = inputSelector;
     buttonSelector = submitButtonSelector;
@@ -63,15 +59,6 @@ export const enableValidation = ({
 
     const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
-        formElement.addEventListener('submit', function (evt) {
-            evt.preventDefault()
-            if (evt.target.classList.contains(popupEdit)) {
-                handleFormEditSubmit(evt);
-            } else if (evt.target.classList.contains(popupAdd)) {
-                handleFormAddSubmit(evt);
-            }
-        });
-
         setEventListeners(formElement);
     });
 };

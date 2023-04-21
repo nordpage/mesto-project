@@ -1,5 +1,5 @@
 import '../index.css';
-import {closePopup, openPopup} from "./modal";
+import {closePopup, handleFormAddSubmit, handleFormEditSubmit, openPopup} from "./modal";
 import {loadCards} from "./card";
 import {enableValidation} from "./validate";
 import {
@@ -8,7 +8,7 @@ import {
     closeButtons,
     nameInput, overlays,
     popupAdd,
-    popupEdit,
+    popupEdit, popupFormAdd, popupFormEdit,
     profileName,
     profileStatus,
     statusInput
@@ -21,6 +21,8 @@ function loadEditValues() {
 }
 
 buttonAdd.addEventListener('click', () => {
+    const submitButton = popupAdd.querySelector('.popup__button-save');
+    submitButton.setAttribute('disabled', '');
     openPopup(popupAdd)
 });
 buttonEdit.addEventListener('click', () => {
@@ -36,6 +38,16 @@ closeButtons.forEach(button => {
 overlays.forEach(overlay => {
     const popup = overlay.closest('.popup');
     overlay.addEventListener('click', () => closePopup(popup));
+});
+
+popupFormAdd.addEventListener('submit', function (e) {
+    e.preventDefault();
+    handleFormAddSubmit(e);
+});
+
+popupFormEdit.addEventListener('submit', function (e) {
+    e.preventDefault();
+    handleFormEditSubmit(e)
 })
 
 enableValidation({
@@ -43,9 +55,7 @@ enableValidation({
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button-save',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input_error_active',
-    popupAdd: 'popup__form_add',
-    popupEdit: 'popup__form_edit'
+    errorClass: 'popup__input_error_active'
 });
 
 loadCards();

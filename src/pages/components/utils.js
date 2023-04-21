@@ -18,3 +18,5 @@ export const popupPreviewTitle = document.querySelector('.popup__title_preview')
 export const previewContainer = document.querySelector('.popup__container_preview');
 export const previewImageClasses = ['popup__image_orientation_album', 'popup__image_orientation_portrait'];
 export const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];
+export const popupFormAdd = document.querySelector('.popup__form_add');
+export const popupFormEdit = document.querySelector('.popup__form_edit');

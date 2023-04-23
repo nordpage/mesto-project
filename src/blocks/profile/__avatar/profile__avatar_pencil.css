@@ -1,0 +1,14 @@
+.profile__avatar_pencil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    object-fit: cover;
+    padding: 47px;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-size: 120px 120px;
+}
+
+.profile__avatar:hover + .profile__avatar_pencil{
+    display: block;
+}

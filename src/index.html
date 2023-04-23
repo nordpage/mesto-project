@@ -7,6 +7,37 @@
     <meta content="Yandex Practicum Studying" name="Анастасия Хоревич">
 </head>
 <body class="page">
+<div class="popup popup_delete">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <div class="popup__window">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <form class="popup__form popup__form_delete">
+                <button class="popup__button-save" type="submit">Да</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="popup popup_avatar">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <div class="popup__window">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form class="popup__form popup__form_avatar" novalidate>
+                <label class="popup__form_field">
+                    <input aria-label="avatar" class="popup__input popup__input_text_avatar" id="avatar-input"
+                           name="avatar"
+                           placeholder="Ссылка на изображение аватара" required
+                           type="url">
+                    <span class="popup__input_error avatar-input-error"></span>
+                </label>
+                <button class="popup__button-save" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="popup popup_edit">
     <div class="popup__overlay"></div>
     <div class="popup__container">
@@ -15,14 +46,17 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form popup__form_edit" novalidate>
                 <label class="popup__form_field">
-                    <input aria-label="Имя" class="popup__input popup__input_text_name" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" id="name-input"
+                    <input aria-label="Имя" class="popup__input popup__input_text_name"
+                           data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+                           id="name-input"
                            maxlength="40" minlength="2"
                            name="name" pattern="^[a-zA-Zа-яА-Я\s-]+$" placeholder="Имя" required type="text"
                            value="Жак-Ив Кусто">
                     <span class="popup__input_error name-input-error"></span>
                 </label>
                 <label class="popup__form_field">
-                    <input aria-label="Статус" class="popup__input popup__input_text_status" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+                    <input aria-label="Статус" class="popup__input popup__input_text_status"
+                           data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
                            id="status-input" maxlength="200" minlength="2"
                            name="status" pattern="^[a-zA-Zа-яА-Я\s-]+$" placeholder="Статус" required
                            type="text"
@@ -42,7 +76,9 @@
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form popup__form_add" novalidate>
                 <label class="popup__form_field">
-                    <input class="popup__input popup__input_text_title" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" id="title-input" maxlength="25"
+                    <input class="popup__input popup__input_text_title"
+                           data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+                           id="title-input" maxlength="25"
                            minlength="4"
                            name="title"
                            pattern="^[a-zA-Zа-яА-Я\s-]+$"
@@ -73,8 +109,11 @@
 </header>
 <main>
     <section class="profile">
-        <img alt="Изображение профиля пользователя" class="profile__avatar"
-             src="<%=require('./images/cousteau.jpg')%>"/>
+        <span class="profile__avatar_container">
+            <img alt="Изображение профиля пользователя" class="profile__avatar"
+                 src="<%=require('./images/cousteau.jpg')%>"/>
+            <img class="profile__avatar_pencil" src="<%=require('./images/pencil_big.svg')%>">
+        </span>
         <div class="profile__info">
             <div class="profile__name-container">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -94,10 +133,15 @@
 <template id="element">
     <article class="element">
         <div class="element__trash"></div>
-        <img alt="" class="element__image" src="">
+        <div class="element__image_container">
+            <img alt="" class="element__image" src="">
+        </div>
         <div class="element__container">
             <h2 class="element__title"></h2>
-            <button class="element__button-like" type="button"></button>
+            <div class="element__like">
+                <button class="element__button-like" type="button"></button>
+                <span class="element__like_title">0</span>
+            </div>
         </div>
     </article>
 </template>

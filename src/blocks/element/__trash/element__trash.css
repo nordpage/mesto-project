@@ -6,6 +6,11 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    display: block;
+}
+
+.element__trash_hidden {
+    display: none;
 }
 
 .element__trash:hover {

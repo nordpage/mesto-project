@@ -1,63 +1,27 @@
 import {openPopup} from "./modal";
 import {
     cards,
-    cardTemplate,
+    cardTemplate, currentUser, popupDelete,
     popupImage,
     popupPreview,
     popupPreviewTitle,
     previewContainer,
     previewContainerClasses,
-    previewImageClasses
+    previewImageClasses, selectedCard
 } from "./utils";
+import {addLike, removeLike} from "./api";
 
-const initialCards = [
-    {
-        name: 'Клайпеда',
-        link: 'https://images.unsplash.com/photo-1600110306971-6e13c9d52341?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80'
-    },
-    {
-        name: 'Вильнюс',
-        link: 'https://images.unsplash.com/photo-1571851550172-b085c783ed7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw5NDg3NDcwfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60'
-    },
-    {
-        name: 'Паланга',
-        link: 'https://images.unsplash.com/photo-1564149629498-30b54f564074?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGFsYW5nYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60'
-    },
-    {
-        name: 'Тракай',
-        link: 'https://images.unsplash.com/photo-1592588763563-1e4bca14396c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fFRyYWthaXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60'
-    },
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-
-export function loadCards() {
+export function loadCards(result) {
     while (cards.firstChild) cards.removeChild(cards.firstChild);
-    initialCards.forEach(card => {
-        const cardElement = createCard(card);
+    result.forEach(card => {
+        const fetchedCard = {
+            id: card._id,
+            name: card.name,
+            link: card.link,
+            likes: card.likes.length,
+            myCard: card.owner._id === currentUser.userId
+        }
+        const cardElement = createCard(fetchedCard);
         cards.prepend(cardElement);
     });
 }
@@ -68,11 +32,37 @@ export function createCard(card) {
     const cardTitle = cardElement.querySelector('.element__title');
     const cardLike = cardElement.querySelector('.element__button-like');
     const cardTrash = cardElement.querySelector('.element__trash');
+    const cardLikeTitle = cardElement.querySelector('.element__like_title');
     cardImage.src = card.link;
     cardImage.alt = 'Картинка, изображающая ' + card.name;
     cardTitle.textContent = card.name;
-    cardLike.addEventListener('click', (evt) => evt.target.classList.toggle('element__button-like-active'));
-    cardTrash.addEventListener('click', (evt) => evt.target.closest('.element').remove());
+    cardLikeTitle.textContent = card.likes;
+    cardLike.addEventListener('click', () => {
+        const toggled = cardLike.classList.toggle('element__button-like-active');
+        if (toggled) {
+            addLike(card.id)
+                .then(result => cardLikeTitle.textContent = result.likes.length)
+                .catch((err) => {
+                    console.log(err);
+                });
+        } else {
+            removeLike(card.id)
+                .then(result => cardLikeTitle.textContent = result.likes.length)
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    });
+    if (card.myCard) {
+        cardTrash.addEventListener('click', () => {
+            selectedCard.id = card.id;
+            selectedCard.element = cardElement;
+            openPopup(popupDelete);
+        })
+    } else {
+        cardTrash.classList.add('element__trash_hidden')
+    }
+
     cardImage.addEventListener('click', () => {
         getMeta(card.link, (err, img) => {
             const index = img.naturalWidth > img.naturalHeight ? 0 : 1;

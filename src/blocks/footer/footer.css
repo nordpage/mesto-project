@@ -1,6 +1,6 @@
 .footer {
+    max-height: 20px;
     width: calc(100% - 400px);
-    align-self: end;
     margin: 66px auto 60px;
 }
 

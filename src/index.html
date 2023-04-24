@@ -109,11 +109,13 @@
 </header>
 <main>
     <section class="profile">
-        <span class="profile__avatar_container">
+        <div class="profile__avatar_container">
             <img alt="Изображение профиля пользователя" class="profile__avatar"
-                 src="<%=require('./images/cousteau.jpg')%>"/>
-            <img class="profile__avatar_pencil" src="<%=require('./images/pencil_big.svg')%>">
-        </span>
+                 src=""/>
+            <div class="profile__avatar_overlay">
+                <img class="profile__avatar_pencil" alt="Иконка Карандашика" src="<%=require('./images/pencil_big.svg')%>">
+            </div>
+        </div>
         <div class="profile__info">
             <div class="profile__name-container">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>

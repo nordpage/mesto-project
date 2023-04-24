@@ -17,9 +17,6 @@ export const cardTemplate = document.querySelector('#element').content;
 export const popupImage = document.querySelector('.popup__image');
 export const popupPreview = document.querySelector('.popup_preview');
 export const popupPreviewTitle = document.querySelector('.popup__title_preview');
-export const previewContainer = document.querySelector('.popup__container_preview');
-export const previewImageClasses = ['popup__image_orientation_album', 'popup__image_orientation_portrait'];
-export const previewContainerClasses = ['popup__container_preview_album', 'popup__container_preview_portrait'];
 export const popupFormAdd = document.querySelector('.popup__form_add');
 export const popupFormEdit = document.querySelector('.popup__form_edit');
 export const popupFormAvatar = document.querySelector('.popup__form_avatar');
@@ -27,13 +24,14 @@ export const popupFormDelete = document.querySelector('.popup__form_delete');
 export const popupAvatar = document.querySelector('.popup_avatar');
 export const popupDelete = document.querySelector('.popup_delete');
 export const profileAvatarContainer = document.querySelector('.profile__avatar_container');
+export const submitAvatarButton = popupAvatar.querySelector('.popup__button-save');
+export const submitAddButton = popupAdd.querySelector('.popup__button-save');
+export const submitEditButton = popupEdit.querySelector('.popup__button-save');
 
 export let currentUser = {
     userId: ''
 };
 
-export let selectedCard = {
-    id: '',
-    element: null
-}
+export let selectedCard = {}
 
+export let selectedElement = {};

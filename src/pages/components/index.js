@@ -1,27 +1,24 @@
 import '../index.css';
 import {
     closePopup,
-    handleFormAddSubmit,
-    handleFormAvatarSubmit,
-    handleFormDeleteSubmit,
-    handleFormEditSubmit,
     openPopup
 } from "./modal";
-import {loadCards} from "./card";
+import {createCard, loadCards} from "./card";
 import {enableValidation} from "./validate";
 
 import {
+    avatarInput,
     buttonAdd,
-    buttonEdit,
-    closeButtons, currentUser,
+    buttonEdit, cards,
+    closeButtons, currentUser, linkInput,
     nameInput, overlays,
-    popupAdd, popupAvatar,
+    popupAdd, popupAvatar, popupDelete,
     popupEdit, popupFormAdd, popupFormAvatar, popupFormDelete, popupFormEdit, profileAvatar, profileAvatarContainer,
     profileName,
-    profileStatus,
-    statusInput
+    profileStatus, selectedCard, selectedElement,
+    statusInput, submitAddButton, submitAvatarButton, submitEditButton, titleInput
 } from "./utils";
-import {getInitialCards, getUserInfo} from "./api";
+import {addCard, deleteCard, getInitialCards, getUserInfo, updateUserInfo, uploadAvatarImage} from "./api";
 
 
 function loadEditValues() {
@@ -39,7 +36,11 @@ buttonEdit.addEventListener('click', () => {
     loadEditValues();
 });
 
-profileAvatarContainer.addEventListener('click', () => openPopup(popupAvatar));
+profileAvatarContainer.addEventListener('click', () => {
+    const submitButton = popupAvatar.querySelector('.popup__button-save');
+    submitButton.setAttribute('disabled', '');
+    openPopup(popupAvatar)
+});
 
 closeButtons.forEach(button => {
     const popup = button.closest('.popup');
@@ -86,18 +87,74 @@ function loadUserInfo(result) {
     currentUser.userId = result._id;
 }
 
-getUserInfo()
-    .then(result => loadUserInfo(result))
-    .catch((err) => {
+
+Promise.all([
+    getUserInfo(),
+    getInitialCards() ])
+    .then(([info, initialCards])=>{
+        currentUser.userId = info._id;
+        loadUserInfo(info);
+        loadCards(initialCards);
+    })
+    .catch((err)=>{
         console.log(err);
-    });
+    })
 
+function handleFormAvatarSubmit(evt) {
+    submitAvatarButton.textContent = "Сохранение...";
+    uploadAvatarImage(avatarInput.value)
+        .then(res => {
+            profileAvatar.src = res.avatar;
+            submitAvatarButton.textContent = "Сохранить";
+            evt.target.reset();
+            closePopup(popupAvatar);
+        })
+        .catch((err) => console.log(err))
+}
 
-getInitialCards()
-    .then(result => loadCards(result))
-    .catch((err) => {
-        console.error(err);
-    });
+function handleFormDeleteSubmit() {
+    deleteCard(selectedCard._id)
+        .then(() => {
+            closePopup(popupDelete);
+            Object.assign(selectedCard,{});
+            Object.assign(selectedElement,{});
+        })
+        .then(() => {
+            getInitialCards()
+                .then(res => loadCards(res))
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 
+function handleFormEditSubmit(evt) {
+    profileName.textContent = nameInput.value;
+    profileStatus.textContent = statusInput.value;
+    submitEditButton.textContent = "Сохранение...";
+    updateUserInfo(nameInput.value, statusInput.value)
+        .then(() => {
+            submitEditButton.textContent = "Сохранить";
+            evt.target.reset();
+            closePopup(popupEdit);
+        })
+        .catch((err) => console.log(err));
+}
 
-
+function handleFormAddSubmit(evt) {
+    submitAddButton.textContent = "Сохранение...";
+    addCard(titleInput.value, linkInput.value)
+        .then(res => {
+            const fetchedCard = Object.assign({}, res);
+            fetchedCard.myCard = res.owner._id === currentUser.userId;
+            const cardElement = createCard(fetchedCard);
+            cards.prepend(cardElement);
+            submitAddButton.textContent = "Сохранить";
+            evt.target.reset();
+            closePopup(popupAdd);
+        })
+        .catch((err) => console.log(err));
+}

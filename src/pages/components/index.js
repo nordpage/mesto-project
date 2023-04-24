@@ -27,8 +27,7 @@ function loadEditValues() {
 }
 
 buttonAdd.addEventListener('click', () => {
-    const submitButton = popupAdd.querySelector('.popup__button-save');
-    submitButton.setAttribute('disabled', '');
+    submitAddButton.setAttribute('disabled', '');
     openPopup(popupAdd)
 });
 buttonEdit.addEventListener('click', () => {
@@ -37,8 +36,7 @@ buttonEdit.addEventListener('click', () => {
 });
 
 profileAvatarContainer.addEventListener('click', () => {
-    const submitButton = popupAvatar.querySelector('.popup__button-save');
-    submitButton.setAttribute('disabled', '');
+    submitAvatarButton.setAttribute('disabled', '');
     openPopup(popupAvatar)
 });
 
@@ -105,11 +103,11 @@ function handleFormAvatarSubmit(evt) {
     uploadAvatarImage(avatarInput.value)
         .then(res => {
             profileAvatar.src = res.avatar;
-            submitAvatarButton.textContent = "Сохранить";
             evt.target.reset();
             closePopup(popupAvatar);
         })
         .catch((err) => console.log(err))
+        .finally(() => submitAvatarButton.textContent = "Сохранить");
 }
 
 function handleFormDeleteSubmit() {
@@ -137,11 +135,11 @@ function handleFormEditSubmit(evt) {
     submitEditButton.textContent = "Сохранение...";
     updateUserInfo(nameInput.value, statusInput.value)
         .then(() => {
-            submitEditButton.textContent = "Сохранить";
             evt.target.reset();
             closePopup(popupEdit);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => submitEditButton.textContent = "Сохранить");
 }
 
 function handleFormAddSubmit(evt) {
@@ -152,9 +150,9 @@ function handleFormAddSubmit(evt) {
             fetchedCard.myCard = res.owner._id === currentUser.userId;
             const cardElement = createCard(fetchedCard);
             cards.prepend(cardElement);
-            submitAddButton.textContent = "Сохранить";
             evt.target.reset();
             closePopup(popupAdd);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => submitAddButton.textContent = "Сохранить");
 }

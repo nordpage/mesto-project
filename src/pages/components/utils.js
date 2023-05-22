@@ -28,10 +28,29 @@ export const submitAvatarButton = popupAvatar.querySelector('.popup__button-save
 export const submitAddButton = popupAdd.querySelector('.popup__button-save');
 export const submitEditButton = popupEdit.querySelector('.popup__button-save');
 
+export const selectors = {
+    elements: '.elements',
+    elementTemplate: '#element',
+    element: '.element',
+    elementImage: '.element__image',
+    elementTitle: '.element__title',
+    elementButtonLike: '.element__button-like',
+    elementTrash: '.element__trash',
+    elementLikeTitle: '.element__like_title',
+    popupOverlay: '.popup__overlay',
+    popupButtonClose: '.popup__button-close',
+    popupButtonSave: '.popup__button-save',
+    popupButtonAdd: '.profile__button-add',
+    popupFormAdd: '.popup__form_add'
+}
+
+export const classes = {
+    popupOpened: 'popup_opened',
+    elementTrashHidden: 'element__trash_hidden'
+}
+
 export let currentUser = {
     userId: ''
 };
 
 export let selectedCard = {}
-
-export let selectedElement = {};

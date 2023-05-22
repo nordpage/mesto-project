@@ -5,7 +5,7 @@ import {
     popupImage,
     popupPreview,
     popupPreviewTitle,
-    selectedCard, selectedElement
+    selectedCard
 } from "./utils";
 import {likes} from "./api";
 
@@ -44,7 +44,6 @@ export function createCard(card) {
     });
     if (card.myCard) {
         cardTrash.addEventListener('click', () => {
-            Object.assign(selectedElement, cardElement);
             Object.assign(selectedCard, card);
             openPopup(popupDelete);
         })

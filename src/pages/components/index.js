@@ -15,7 +15,7 @@ import {
     popupAdd, popupAvatar, popupDelete,
     popupEdit, popupFormAdd, popupFormAvatar, popupFormDelete, popupFormEdit, profileAvatar, profileAvatarContainer,
     profileName,
-    profileStatus, selectedCard, selectedElement,
+    profileStatus, selectedCard,
     statusInput, submitAddButton, submitAvatarButton, submitEditButton, titleInput
 } from "./utils";
 import {addCard, deleteCard, getInitialCards, getUserInfo, updateUserInfo, uploadAvatarImage} from "./api";
@@ -115,7 +115,6 @@ function handleFormDeleteSubmit() {
         .then(() => {
             closePopup(popupDelete);
             Object.assign(selectedCard,{});
-            Object.assign(selectedElement,{});
         })
         .then(() => {
             getInitialCards()

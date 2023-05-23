@@ -27,6 +27,7 @@ export const profileAvatarContainer = document.querySelector('.profile__avatar_c
 export const submitAvatarButton = popupAvatar.querySelector('.popup__button-save');
 export const submitAddButton = popupAdd.querySelector('.popup__button-save');
 export const submitEditButton = popupEdit.querySelector('.popup__button-save');
+export const forms = document.querySelectorAll('.popup__form');
 
 export const selectors = {
     elements: '.elements',
@@ -41,7 +42,17 @@ export const selectors = {
     popupButtonClose: '.popup__button-close',
     popupButtonSave: '.popup__button-save',
     popupButtonAdd: '.profile__button-add',
-    popupFormAdd: '.popup__form_add'
+    popupFormAdd: '.popup__form_add',
+    popupButtonEdit: '.profile__button-edit',
+    popupFormEdit: '.popup__form_edit'
+}
+
+export const formValidator = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button-save',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input_error_active'
 }
 
 export const classes = {

@@ -1,5 +1,3 @@
-import {addCard, getUserInfo, likes, updateUserInfo, uploadAvatarImage} from "../api";
-
 class Api {
     constructor(options) {
         this._options = options;
@@ -16,6 +14,7 @@ class Api {
     updateUserInfo(name, status) {
         return fetch(`${this._options.baseUrl}/users/me`, {
             method: 'PATCH',
+            headers: this._options.headers,
             body: JSON.stringify({
                 name: name,
                 about: status
@@ -27,6 +26,7 @@ class Api {
     likes(method, id) {
         return fetch(`${this._options.baseUrl}/cards/likes/${id}`, {
             method: method,
+            headers: this._options.headers
         })
             .then(this._getResponseData);
     }
@@ -34,6 +34,7 @@ class Api {
     addCard(name, link) {
         return fetch(`${this._options.baseUrl}/cards`, {
             method: "POST",
+            headers: this._options.headers,
             body: JSON.stringify({
                 name: name,
                 link: link
@@ -53,9 +54,19 @@ class Api {
     uploadAvatarImage(url) {
         return fetch(`${this._options.baseUrl}/users/me/avatar`, {
             method: "PATCH",
+            headers: this._options.headers,
             body: JSON.stringify({
                 avatar: url
             })
+        })
+            .then(this._getResponseData)
+    }
+
+    deleteCard(id) {
+        return fetch(`${this._options.baseUrl}/cards/${id}`, {
+            method: "DELETE",
+            headers: this._options.headers
+
         })
             .then(this._getResponseData)
     }
@@ -68,7 +79,7 @@ class Api {
     }
 
     errorHandler(err) {
-        console.log(err);
+        console.error(err);
     }
 
 }

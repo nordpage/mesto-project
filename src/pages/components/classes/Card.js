@@ -16,11 +16,17 @@ export default class Card {
     }
 
     _setListeners() {
-        this._cardLike.addEventListener('click', this._handleLike)
+        const toggled = this._cardLike.classList.contains('element__button-like-active') ? "DELETE" : "PUT";
+        this._cardLike.addEventListener('click', this._handleLike(this._card.id, toggled))
         if (this._isCardOwner()) {
-            this._cardTrash.addEventListener('click', this._handleTrash)
+            this._cardTrash.addEventListener('click', this._handleTrash(this._card.id))
         }
-        this._cardImage.addEventListener('click', this._handleClick)
+        this._cardImage.addEventListener('click', this._handleClick(this._card.id))
+    }
+
+    updateLike(result) {
+        this._cardLikeTitle.textContent = result.likes.length
+        this._cardLike.classList.toggle('element__button-like-active');
     }
 
     _isCardOwner() {

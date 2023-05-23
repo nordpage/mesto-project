@@ -12,10 +12,10 @@ export default class Section {
     }
 
     setItem(element) {
-        this._container.prepend(element);
+        this._container.append(element);
     }
 
     setNewItem(element) {
-        this._container.append(element);
+        this._container.prepend(element);
     }
 }
